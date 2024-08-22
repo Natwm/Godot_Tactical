@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://byfbs00j6buyv"]
+[gd_scene load_steps=7 format=3 uid="uid://byfbs00j6buyv"]
 
 [ext_resource type="Script" path="res://00_Scenes/Grid/Scripts/grid_generator.gd" id="1_gy60v"]
 [ext_resource type="Resource" uid="uid://delwng2uqgfet" path="res://02_Ressources/Grid_Test_Param.tres" id="2_5g5ho"]
+[ext_resource type="PackedScene" uid="uid://b3a7l1yvtugba" path="res://00_Scenes/Grid/Tile/BaseTile.tscn" id="3_o2v3f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_svkcf"]
 
@@ -12,19 +13,21 @@
 [node name="Grid Generator" type="Node3D"]
 script = ExtResource("1_gy60v")
 grid_param = ExtResource("2_5g5ho")
+tile = ExtResource("3_o2v3f")
 
 [node name="cast" type="Node3D" parent="."]
 
 [node name="grid" type="Node3D" parent="."]
 
 [node name="test" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="test"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="test/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")
 
@@ -34,3 +37,6 @@ transform = Transform3D(-4.2222e-08, 0.258819, -0.965926, 1.13133e-08, 0.965926,
 [node name="ShapeCast3D" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32263, 1.58808, 1.60066)
 shape = SubResource("CapsuleShape3D_ji38a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.917775, -0.351367, -0.185012, 0, -0.465908, 0.884833, -0.3971, -0.812078, -0.427599, 0, 2.25076, 0)

@@ -16,6 +16,7 @@ extends Node3D
 ### ready ###
 var analyse_element : Array
 var space_state : PhysicsDirectSpaceState3D
+var gameboard : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,10 +47,7 @@ func Create_Analyse_board():
 			if(!result.is_empty()):
 				print("position = ("+ str(x) + "," + str(y) + ") = Result " + result.collider.name )
 				DebugDraw3D.draw_cylinder_ab(Vector3(0.5+x,2,0.5+y),Vector3(0.5+x,0,0.5+y),0.25,Color.RED,1000)
-
-			#### Add Visual
-			#
-
+				gameboard.append(create_tile(Vector3(x,0,y)))
 			pass
 		pass
 	pass
@@ -63,3 +61,16 @@ func create_Capsule_cast() -> ShapeCast3D:
 	detection_ground.shape.radius /= 2
 	cast.add_child(detection_ground)
 	return detection_ground
+
+func create_tile(position :Vector3) -> Node:
+	if(!tile.can_instantiate()):
+		return null
+	
+	var new_tile := tile.instantiate()
+	grid.add_child(new_tile)
+	
+	new_tile.global_position = position
+	if(new_tile.has_method("set_up_tile")):
+		print("good")
+		new_tile.set_up_tile()
+	return new_tile
