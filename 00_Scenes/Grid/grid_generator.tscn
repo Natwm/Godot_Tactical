@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://byfbs00j6buyv"]
+
+[ext_resource type="Script" path="res://00_Scenes/Grid/Scripts/grid_generator.gd" id="1_gy60v"]
+[ext_resource type="Resource" uid="uid://delwng2uqgfet" path="res://02_Ressources/Grid_Test_Param.tres" id="2_5g5ho"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_svkcf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lgpxk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ji38a"]
+
+[node name="Grid Generator" type="Node3D"]
+script = ExtResource("1_gy60v")
+grid_param = ExtResource("2_5g5ho")
+
+[node name="cast" type="Node3D" parent="."]
+
+[node name="grid" type="Node3D" parent="."]
+
+[node name="test" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="test"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+shape = SubResource("BoxShape3D_svkcf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="test/CollisionShape3D"]
+mesh = SubResource("BoxMesh_lgpxk")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.2222e-08, 0.258819, -0.965926, 1.13133e-08, 0.965926, 0.258819, 1, 8.88178e-16, -4.37114e-08, -1.80482, 2.18038, 1.63916)
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32263, 1.58808, 1.60066)
+shape = SubResource("CapsuleShape3D_ji38a")
