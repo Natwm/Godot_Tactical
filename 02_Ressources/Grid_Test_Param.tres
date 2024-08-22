@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Grid_parametter" load_steps=2 format=3 uid="uid://delwng2uqgfet"]
+
+[ext_resource type="Script" path="res://02_Ressources/Script/Grid_Parametter.gd" id="1_r8f6y"]
+
+[resource]
+script = ExtResource("1_r8f6y")
+grid_size = Vector2(4, 4)
+cell_size = 1.0
