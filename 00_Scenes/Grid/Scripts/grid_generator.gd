@@ -46,7 +46,7 @@ func Create_Analyse_board():
 			
 			var result :Dictionary = space_state.intersect_ray(current_analyse_element)
 			if(!result.is_empty()):
-				print("position = ("+ str(x) + "," + str(y) + ") = Result " + result.collider.name )
+				#print("position = ("+ str(x) + "," + str(y) + ") = Result " + result.collider.name )
 				gameboard[Vector3(x,0,y)] = create_tile(Vector3(x,0,y))
 			pass
 		pass
@@ -62,15 +62,26 @@ func create_Capsule_cast() -> ShapeCast3D:
 	cast.add_child(detection_ground)
 	return detection_ground
 
-func create_tile(position :Vector3) -> Node:
+func create_tile(position :Vector3) -> Node3D:
 	if(!tile.can_instantiate()):
 		return null
 	
 	var new_tile := tile.instantiate()
 	grid.add_child(new_tile)
 	
+	new_tile.name = str(position)
+	
 	new_tile.global_position = position
 	if(new_tile.has_method("set_up_tile")):
-		print("good")
 		new_tile.set_up_tile()
 	return new_tile
+
+
+func Get_walkable_tile() -> Array :
+	var walkable_tile : Array
+	for tile_position in gameboard:
+		print(str(tile_position))
+		walkable_tile.append(Vector2(tile_position.x,tile_position.z))
+		pass
+	return walkable_tile
+	pass

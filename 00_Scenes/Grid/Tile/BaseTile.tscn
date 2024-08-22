@@ -1,8 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3a7l1yvtugba"]
+[gd_scene load_steps=7 format=3 uid="uid://b3a7l1yvtugba"]
 
 [ext_resource type="Script" path="res://00_Scenes/Grid/Tile/Scripts/BaseTile.gd" id="1_wdmuv"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lpav3"]
+albedo_color = Color(0, 1, 1, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_00578"]
+material = SubResource("StandardMaterial3D_lpav3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f7bum"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i14yf"]
+material = SubResource("StandardMaterial3D_f7bum")
+
+[sub_resource type="SphereMesh" id="SphereMesh_umyms"]
 
 [node name="BaseTile" type="Node3D"]
 script = ExtResource("1_wdmuv")
@@ -10,3 +22,12 @@ script = ExtResource("1_wdmuv")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.2, 0, 0, 0, 0.8, 0.5, 0, 0.5)
 mesh = SubResource("BoxMesh_00578")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.25, 0, 0, 0, 0.8, 0.5, 0, 0.5)
+visible = false
+mesh = SubResource("BoxMesh_i14yf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D2"]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 2.0264, 0)
+mesh = SubResource("SphereMesh_umyms")

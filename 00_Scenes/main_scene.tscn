@@ -6,6 +6,7 @@
 
 [node name="MainScene" type="Node3D"]
 script = ExtResource("1_0gj3q")
+cell_end = Vector2(2, 0)
 
 [node name="Grid Generator" parent="." instance=ExtResource("1_b1ia2")]
 
