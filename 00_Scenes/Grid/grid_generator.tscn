@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://byfbs00j6buyv"]
+[gd_scene load_steps=7 format=3 uid="uid://byfbs00j6buyv"]
 
 [ext_resource type="Script" path="res://00_Scenes/Grid/Scripts/grid_generator.gd" id="1_gy60v"]
 [ext_resource type="Resource" uid="uid://delwng2uqgfet" path="res://02_Ressources/Grid_Test_Param.tres" id="2_5g5ho"]
@@ -6,7 +6,10 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_svkcf"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4c30m"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_lgpxk"]
+material = SubResource("StandardMaterial3D_4c30m")
 
 [node name="Grid Generator" type="Node3D"]
 script = ExtResource("1_gy60v")
@@ -17,157 +20,159 @@ tile = ExtResource("3_o2v3f")
 
 [node name="grid" type="Node3D" parent="."]
 
-[node name="test" type="StaticBody3D" parent="."]
+[node name="Board" type="Node3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="test"]
+[node name="test" type="StaticBody3D" parent="Board"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/test"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="test/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/test/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")
 
-[node name="test12" type="StaticBody3D" parent="."]
+[node name="test12" type="StaticBody3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="test12"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/test12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="test12/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/test12/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")
 
-[node name="test17" type="StaticBody3D" parent="."]
+[node name="test17" type="StaticBody3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="test17"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/test17"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="test17/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/test17/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")
 
-[node name="test18" type="StaticBody3D" parent="."]
+[node name="test18" type="StaticBody3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="test18"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/test18"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="test18/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/test18/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")
 
-[node name="test14" type="StaticBody3D" parent="."]
+[node name="test14" type="StaticBody3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="test14"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/test14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="test14/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/test14/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")
 
-[node name="test15" type="StaticBody3D" parent="."]
+[node name="test15" type="StaticBody3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="test15"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/test15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="test15/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/test15/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")
 
-[node name="test9" type="StaticBody3D" parent="."]
+[node name="test9" type="StaticBody3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="test9"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/test9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="test9/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/test9/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")
 
-[node name="test10" type="StaticBody3D" parent="."]
+[node name="test10" type="StaticBody3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="test10"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/test10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="test10/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/test10/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")
 
-[node name="test11" type="StaticBody3D" parent="."]
+[node name="test11" type="StaticBody3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="test11"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/test11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="test11/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/test11/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")
 
-[node name="test13" type="StaticBody3D" parent="."]
+[node name="test13" type="StaticBody3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="test13"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/test13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="test13/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/test13/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")
 
-[node name="test5" type="StaticBody3D" parent="."]
+[node name="test5" type="StaticBody3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="test5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/test5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="test5/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/test5/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")
 
-[node name="test6" type="StaticBody3D" parent="."]
+[node name="test6" type="StaticBody3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="test6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/test6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="test6/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/test6/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")
 
-[node name="test7" type="StaticBody3D" parent="."]
+[node name="test7" type="StaticBody3D" parent="Board"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="test7"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/test7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
 shape = SubResource("BoxShape3D_svkcf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="test7/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/test7/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.474205, 0)
 mesh = SubResource("BoxMesh_lgpxk")
 skeleton = NodePath("../..")

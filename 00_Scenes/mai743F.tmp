@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://1bxkkqle6rg4"]
+
+[ext_resource type="Script" path="res://00_Scenes/main_scene.gd" id="1_0gj3q"]
+[ext_resource type="PackedScene" uid="uid://byfbs00j6buyv" path="res://00_Scenes/Grid/grid_generator.tscn" id="1_b1ia2"]
+[ext_resource type="Script" path="res://00_Scenes/Unit/Scripts/UnitPath.gd" id="2_rb5cu"]
+
+[node name="MainScene" type="Node3D"]
+script = ExtResource("1_0gj3q")
+cell_end = Vector2(2, 0)
+
+[node name="Grid Generator" parent="." instance=ExtResource("1_b1ia2")]
+
+[node name="UnitPath" type="Node3D" parent="."]
+script = ExtResource("2_rb5cu")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.2222e-08, 0.258819, -0.965926, 1.13133e-08, 0.965926, 0.258819, 1, 8.88178e-16, -4.37114e-08, -1.80482, 2.18038, 1.63916)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.917775, -0.351367, -0.185012, 0, -0.465908, 0.884833, -0.3971, -0.812078, -0.427599, 0, 2.25076, 0)
+
+[node name="GridMap" type="GridMap" parent="."]
+visible = false
+cell_size = Vector3(1, 1, 1)

@@ -14,12 +14,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(Input.is_action_just_pressed("Debug")):
-		var a = PathFinder.new(grid_generator.grid_param,grid_generator.Get_walkable_tile())
+		var a = PathFinder.new(grid_generator.grid_param,grid_generator._flood_fill(cell_start,50))
 		var path = a.calculate_point_path(cell_start, cell_end)
 		Display_path(path)
-		#var selected_position :Vector3 = Vector3(0,0,0)
-		#grid_generator.gameboard[selected_position].set_on_path()
-		#print(grid_generator.gameboard[selected_position].name +" pomme")
 	pass
 
 
@@ -29,7 +26,7 @@ func Display_path(path: Array):
 		print("error")
 		return
 	for path_position :Vector2 in path :
-		print(str(index) +" "+ str(path_position))
+		#print(str(index) +" "+ str(path_position))
 		var selected_position :Vector3 = Vector3(path_position.x,0,path_position.y)
 		var tile = grid_generator.gameboard[selected_position]
 		
@@ -37,7 +34,7 @@ func Display_path(path: Array):
 			print("error")
 			return
 			
-		if(tile.has_method("set_on_path")):
+		if(tile is Base_Tile):
 			tile.set_on_path()
 			pass
 			index +=1

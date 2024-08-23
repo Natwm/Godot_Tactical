@@ -19,6 +19,14 @@ var analyse_element : Array
 var space_state : PhysicsDirectSpaceState3D
 var gameboard : Dictionary
 
+### ENUM ###
+const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
+
+## Mapping of coordinates of a cell to a reference to the unit it contains.
+var _units := {}
+var _active_unit
+var _walkable_cells := []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	space_state = get_world_3d().direct_space_state
@@ -30,11 +38,6 @@ func _ready():
 func _process(delta):
 	if(grid_param):
 		DebugDraw3D.draw_box(global_position,Quaternion.IDENTITY,Vector3(grid_param.grid_size.x,.25,grid_param.grid_size.y),Color.GREEN)
-		
-		#for x in range(grid_param.grid_size.x):
-			#for y in range(grid_param.grid_size.y):
-				#DebugDraw3D.draw_cylinder_ab(Vector3(0.5+x,2,0.5+y),Vector3(0.5+x,0,0.5+y),0.25,Color.RED,1000)
-
 	pass
 
 func Create_Analyse_board():
@@ -66,13 +69,13 @@ func create_tile(position :Vector3) -> Node3D:
 	if(!tile.can_instantiate()):
 		return null
 	
-	var new_tile := tile.instantiate()
+	var new_tile :Node = tile.instantiate()
 	grid.add_child(new_tile)
 	
 	new_tile.name = str(position)
 	
 	new_tile.global_position = position
-	if(new_tile.has_method("set_up_tile")):
+	if(new_tile is Base_Tile):
 		new_tile.set_up_tile()
 	return new_tile
 
@@ -80,8 +83,53 @@ func create_tile(position :Vector3) -> Node3D:
 func Get_walkable_tile() -> Array :
 	var walkable_tile : Array
 	for tile_position in gameboard:
-		print(str(tile_position))
+		#print(str(tile_position))
 		walkable_tile.append(Vector2(tile_position.x,tile_position.z))
 		pass
 	return walkable_tile
 	pass
+
+## Returns `true` if the cell is occupied by a unit.
+func is_occupied(cell: Vector2) -> bool:
+	return _units.has(cell)
+	
+func _flood_fill(cell: Vector2, max_distance: int) -> Array:
+	var array := []
+	var stack := [cell]
+	while not stack.size() == 0:
+		var current = stack.pop_back()
+		if not grid_param.is_within_bounds(current):
+			continue
+		if current in array:
+			continue
+			
+		var heuristic_value := GetHeuristique(current)
+		if heuristic_value < 0:
+			continue
+
+		var difference: Vector2 = (current - cell).abs()
+		var distance := int(difference.x + difference.y) + (heuristic_value - 1)
+		if distance > max_distance:
+			continue
+
+		array.append(current)
+		for direction in DIRECTIONS:
+			var coordinates: Vector2 = current + direction
+			if is_occupied(coordinates):
+				continue
+			if coordinates in array:
+				continue
+			# Minor optimization: If this neighbor is already queued
+			#	to be checked, we don't need to queue it again
+			if coordinates in stack:
+				continue
+			if(!gameboard.has(Vector3(coordinates.x,0,coordinates.y))):
+				continue
+			
+			stack.append(coordinates)
+	return array
+
+func GetHeuristique(current: Vector2) -> int:
+	var tile = gameboard[Vector3(current.x,0,current.y)]
+	print(str(tile.value))
+	return gameboard[Vector3(current.x,0,current.y)].value
